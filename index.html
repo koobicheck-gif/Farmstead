@@ -198,19 +198,14 @@
   .gallery-section{background:var(--bg-1);}
   .gallery-section .eyebrow{justify-content:center; margin:0 auto var(--space-eyebrow);}
   .gallery-section h2{font-family:var(--display); font-weight:500; font-size:clamp(28px,3.8vw,44px); line-height:1.16; letter-spacing:-0.015em; text-align:center; margin:0 auto var(--space-head); max-width:var(--maxw-head); color:var(--head); text-wrap:balance;}
-  .gallery-grid{display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:180px; gap:16px; margin-top:56px;}
+  .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:200px; gap:16px; margin-top:56px;}
   .gallery-grid figure{position:relative; margin:0; overflow:hidden; border-radius:2px;}
   .gallery-grid img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s ease;}
   .gallery-grid figure:hover img{transform:scale(1.06);}
-  .gallery-grid .g-1{grid-column:span 3; grid-row:span 2;}
-  .gallery-grid .g-2{grid-column:span 3; grid-row:span 2;}
-  .gallery-grid .g-3{grid-column:span 2; grid-row:span 1;}
-  .gallery-grid .g-4{grid-column:span 2; grid-row:span 1;}
-  .gallery-grid .g-5{grid-column:span 2; grid-row:span 1;}
+  .gallery-grid .g-feature{grid-column:span 2; grid-row:span 2;}
   @media (max-width:760px){
     .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:160px;}
-    .gallery-grid .g-1,.gallery-grid .g-2{grid-column:span 2; grid-row:span 2;}
-    .gallery-grid .g-3,.gallery-grid .g-4,.gallery-grid .g-5{grid-column:span 1; grid-row:span 1;}
+    .gallery-grid .g-feature{grid-column:span 2; grid-row:span 2;}
   }
 
   /* FAQ */
@@ -453,11 +448,16 @@
     <div class="eyebrow reveal">A look inside</div>
     <h2 class="reveal">The Farmstead, <em>in person.</em></h2>
     <div class="gallery-grid">
-      <figure class="g-1 reveal-img"><img src="assets/gallery/homestead-sunset.jpg" alt="Aerial view of The Farmstead homestead at sunset, surrounded by farmland"></figure>
-      <figure class="g-2 reveal-img"><img src="assets/gallery/barn-dusk.jpg" alt="The Farmstead's event barn lit up at dusk"></figure>
-      <figure class="g-3 reveal-img"><img src="assets/gallery/gathering-hall.jpg" alt="Guests gathered for a meal in The Farmstead's event hall"></figure>
-      <figure class="g-4 reveal-img"><img src="assets/gallery/tiny-home-living.jpg" alt="Living area of one of The Farmstead's guest cottages"></figure>
-      <figure class="g-5 reveal-img"><img src="assets/gallery/kitchen.jpg" alt="Renovated kitchen at The Farmstead"></figure>
+      <figure class="g-feature reveal-img"><img src="assets/gallery/homestead-sunset.jpg" alt="Aerial view of The Farmstead homestead at sunset, surrounded by farmland"></figure>
+      <figure class="g-feature reveal-img"><img src="assets/gallery/barn-dusk.jpg" alt="The Farmstead's event barn lit up at dusk"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/gathering-hall.jpg" alt="Guests gathered for a meal in The Farmstead's event hall"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/tiny-home-living.jpg" alt="Living area of one of The Farmstead's guest cottages"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/kitchen.jpg" alt="Renovated kitchen at The Farmstead"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/dining-nook.jpg" alt="Breakfast nook with a round wooden table at The Farmstead"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/living-room-fireplace.jpg" alt="Living room with a whitewashed brick fireplace at The Farmstead"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/sitting-room.jpg" alt="Sitting room with a leather chesterfield sofa at The Farmstead"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/living-room-window.jpg" alt="Living room overlooking the farmland at The Farmstead"></figure>
+      <figure class="reveal-img"><img src="assets/gallery/dining-room.jpg" alt="Formal dining room at The Farmstead"></figure>
     </div>
   </div>
 </section>
