@@ -194,6 +194,21 @@
   .btn-gold{display:inline-block; background:var(--gold); color:#221E14; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; padding:18px 40px; border-radius:1px; text-decoration:none; cursor:pointer; border:1px solid var(--gold); transition:transform .25s ease, background .25s ease, box-shadow .25s ease;}
   .btn-gold:hover{background:#D8BC8C; transform:translateY(-2px); box-shadow:0 10px 28px rgba(201,168,118,0.25);}
 
+  /* CONTACT FORM */
+  .contact-form-wrap{max-width:560px; margin:60px auto 0; text-align:left;}
+  .contact-form .hp-field{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;}
+  .contact-form .form-row{display:grid; grid-template-columns:1fr 1fr; gap:24px 28px;}
+  .contact-form .form-field{margin-bottom:28px;}
+  .contact-form label{display:block; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#B7AF94; margin-bottom:10px;}
+  .contact-form input, .contact-form textarea{width:100%; background:transparent; border:none; border-bottom:1px solid rgba(238,232,214,0.24); color:#F4F1E6; font-family:'Inter',sans-serif; font-size:15px; padding:10px 2px; outline:none; transition:border-color .25s ease; box-sizing:border-box;}
+  .contact-form input:focus, .contact-form textarea:focus{border-bottom-color:var(--gold);}
+  .contact-form textarea{resize:vertical;}
+  .contact-form-wrap .btn-gold{margin-top:8px; width:100%; text-align:center;}
+  .form-success{max-width:560px; margin:60px auto 0; text-align:center; color:#EFE9DA; font-family:var(--serif); font-size:17px; line-height:1.7;}
+  @media (max-width:640px){
+    .contact-form .form-row{grid-template-columns:1fr;}
+  }
+
   /* GALLERY */
   .gallery-section{background:var(--bg-1);}
   .gallery-section .eyebrow{justify-content:center; margin:0 auto var(--space-eyebrow);}
@@ -438,7 +453,36 @@
     <div class="eyebrow reveal">The invitation</div>
     <h2 class="reveal">Would you help us bring this vision to life <em>through your DAF?</em></h2>
     <p class="italic-lede reveal">We would appreciate the chance to discern whether this is the kind of investment your DAF was made for. If it resonates, we would be honored to have you as a founding partner.</p>
-    <a href="#invitation" class="btn-gold reveal">Start a Conversation</a>
+    <a href="#contact-form" class="btn-gold reveal">Start a Conversation</a>
+
+    <div class="contact-form-wrap reveal" id="contact-form">
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contactForm">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="hp-field"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" required>
+          </div>
+          <div class="form-field">
+            <label for="cf-email">Email</label>
+            <input type="email" id="cf-email" name="email" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="cf-phone">Phone Number</label>
+          <input type="tel" id="cf-phone" name="phone">
+        </div>
+        <div class="form-field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-gold">Send Message</button>
+      </form>
+      <div class="form-success" id="formSuccess" hidden>
+        <p>Thank you &mdash; we've received your message and will be in touch soon.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -544,6 +588,24 @@
     const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in'); io.unobserve(e.target);}});},{threshold:0.12, rootMargin:'0px 0px -60px 0px'});
     revealEls.forEach(el=>io.observe(el));
   } else { revealEls.forEach(el=>el.classList.add('in')); }
+
+  const contactForm = document.getElementById('contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: new URLSearchParams(formData).toString()
+      }).then(()=>{
+        contactForm.hidden = true;
+        document.getElementById('formSuccess').hidden = false;
+      }).catch(()=>{
+        alert("Something went wrong sending your message. Please try again or email us directly.");
+      });
+    });
+  }
 
   const nav=document.getElementById('siteNav'), progressBar=document.getElementById('progressBar'), toTopBtn=document.getElementById('toTop');
   function onScroll(){
